@@ -9,14 +9,6 @@ function captainGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt)
 % sizeCapt is a parameter passed into drawCapt.
 capt = getCapt(sizeCapt);
 
-%rotate captain
-R = getRotation(thetaCapt);
-captRotated = R*capt;
-
-%shift captain to ne location
-S = getTranslation(xCapt,yCapt);
-capt = S*captRotated;
-
 % TODO : Rotate captain from zero heading to heading thetaCapt
 
 % rotate captain

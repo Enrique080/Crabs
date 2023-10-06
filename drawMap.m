@@ -1,6 +1,6 @@
 function [height,width] = drawMap(imageName)
 %This function draws the background map for the game using the image named
-imageName
+%imageName
 % It returns the map dimensions base in the supplied image.
 % The size of the background image defines the map dimesions of the game and
 %establishes the coordinate system.

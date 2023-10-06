@@ -1,4 +1,5 @@
 
+
 function [xCapt,yCapt,thetaCapt] = moveCaptain (cmd,x,y,theta,width,height)
 
 dTheta = pi/8;
@@ -38,4 +39,3 @@ else
 
 endif
 
-endfunction

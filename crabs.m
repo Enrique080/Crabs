@@ -1,14 +1,16 @@
 function crabs ()
-  
-  
-  
+
+
+
 % Crabs is a kids computer game where a fisherman, called the captain,
 % hunts for a very clever and powerful crab.
 % Draw the game map and initialize map dimensions.
 [mapHeight , mapWidth] = drawMap( "BGImage.png" );
 % Initialize captain location, heading and size
+
 xCapt = 1000;
 yCapt = 700;
+
 thetaCapt = -pi/2;
 sizeCapt = 50;
 

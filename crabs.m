@@ -41,11 +41,23 @@ endfor
 %draw new captain
 captGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt);
 
- endif 
+endif 
 
+if((cmd == "f") || (cmd == "g"))
+
+%erase old captGraphics
+ for(i=1: length(captGraphics))
+ set( captGraphics(i), 'Visible', 'off');
+endfor
+
+[sizeCapt] = getHulk(cmd, sizeCapt);
+
+captGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt);
+
+endif
 endwhile
 
-close all
+ 
 
 endfunction
 

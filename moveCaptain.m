@@ -5,6 +5,7 @@ function [xCapt,yCapt,thetaCapt] = moveCaptain (cmd,x,y,theta,width,height)
 dTheta = pi/8;
 dStep = 50;
 
+
 if( cmd == "w")
     %move forward
       xTemp= x + dStep*cos(theta);
@@ -31,6 +32,7 @@ elseif(cmd == "d")
        xCapt= x;
        yCapt= y;
      thetaCapt = theta + dTheta;
+     
 else 
 %defualt
   xCapt= x;

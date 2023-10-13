@@ -63,9 +63,11 @@ captPt17=[ 0.5*captSize; 1.5*captSize; 1];
 
 captPt18=[ 0.5*captSize; -1.5*captSize; 1];
 
+captPt19= [ 3*captSize; 1*captSize; 1];
+
 
 capt = [ captPt1, captPt2, captPt3, captPt4, captPt5, captPt6, captPt7, ...
 captPt8, captPt9, captPt10, captPt11, captPt12, captPt13, captPt14, captPt15,...
-captPt16 captPt17, captPt18];
+captPt16 captPt17, captPt18, captPt19];
 
 endfunction

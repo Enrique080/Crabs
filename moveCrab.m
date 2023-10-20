@@ -7,36 +7,36 @@ dTheta = pi/6;
 if(cmd == "j")
 xCrab = x + dStep*sin(theta);
 yCrab = y - dStep*cos(theta);
-thetCrabs = theta;
+thetaCrab = theta;
 
 %move right
 elseif(cmd == "l")
 xCrab = x - dStep*sin(theta);
 yCrab = y + dStep*cos(theta);
-thetCrabs = theta;
+thetaCrab = theta;
 
 %move back
 elseif(cmd == "k")
 xCrab = x - dStep*cos(theta);
 yCrab = y - dStep*sin(theta);
-thetCrabs = theta;
+thetaCrab = theta;
 
 % rotate right
 elseif(cmd == "i")
 xCrab = x;
 yCrab = y ;
-thetCrabs = theta + dTheta;
+thetaCrab = theta + dTheta;
 
 % rotate left
 elseif(cmd == "i")
 xCrab = x;
 yCrab = y ;
-thetCrabs = theta - dTheta;
+thetaCrab = theta - dTheta;
 
 else
 xCrab = x;
 yCrab = y ;
-thetCrabs = theta;
+thetaCrab = theta;
 
 endif
 

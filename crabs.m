@@ -20,6 +20,12 @@ yCrab = 1200;
 thetaCrab = -pi/2;
 sizeCrab = 50;
 
+%initialize jellyfish
+xJelly = rand*mapWidth;
+yJelly = 0;
+thetaJelly = -pi/2;
+sizeJelly = 25;
+
 % Draw the captain and initialize graphics handles
 %*********************************************************
 % Put your call to drawCapt() here ..... You must give drawCapt its
@@ -27,16 +33,36 @@ captGraphics = drawCapt(xCapt , yCapt , thetaCapt , sizeCapt);
 crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab);
 % input and output arguments.
 %*******************************************************
+while(1)
+% Put your jellyfish stuff here ...
+
+% erase old jellyfish
+    for i=1:length(jellyGraphics)
+     delete(jellyGraphics(i));
+endfor
+
+  % move jellyfish
+  [xJelly,yJelly,thetaJelly] = moveJelly(level, xJelly, yJelly,thetaJelly, sizeJelly, mapHeight, mapWidth);
+
+  % draw jellyfish
+jellyGraphics = drawJelly(xJelly,yJelly,thetaJelly,sizeJelly);
+
+% read the keyboard
+
+cmd = kbhit(1);
+if (cmd == 'Q')
+break;
+endif
 
 %initial command
-cmd = "null";
+%cmd = "null";
 
-while(cmd != "Q")
+%while(cmd != "Q")
 
-cmd = kbhit();
+%cmd = kbhit();
 
  if((cmd == "w") || (cmd == "a") || (cmd == "d"))
- 
+
  %erase old captGraphics
  for(i=1: length(captGraphics))
  set( captGraphics(i), 'Visible', 'off');
@@ -56,10 +82,10 @@ elseif (cmd == "i" || cmd == "j" || cmd == "k" || cmd == "l" || cmd ==",") % res
   endfor
 
 %move crab
-[xCrab,yCrab,thetaCrabs] = moveCrab(cmd,xCrab,yCrab,thetaCrab,sizeCrab, mapHeight, mapWidth);
+[xCrab,yCrab,thetaCrab] = moveCrab(cmd,xCrab,yCrab,thetaCrab,sizeCrab, mapHeight, mapWidth);
 
 %draw new captain and crab
-crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab)
+crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab);
 
 endif
 
@@ -76,7 +102,10 @@ captGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt);
 
 endif
 
+fflush(stdout);
+pause(.01)
 endwhile
+
 
  close all
  clear

@@ -1,4 +1,4 @@
-function [xCrab,yCrab,thetaCrab] = moveCrab(cmd,x,y,theta,height,width,size)
+function [xCrab,yCrab,thetaCrabs] = moveCrab(cmd,x,y,theta,height,width,size)
 
 dStep = 20;
 dTheta = pi/6;
@@ -7,36 +7,36 @@ dTheta = pi/6;
 if(cmd == "j")
 xCrab = x + dStep*sin(theta);
 yCrab = y - dStep*cos(theta);
-thetCrabs = theta;
+thetaCrabs = theta;
 
 %move right
 elseif(cmd == "l")
 xCrab = x - dStep*sin(theta);
 yCrab = y + dStep*cos(theta);
-thetCrabs = theta;
+thetaCrabs = theta;
 
 %move back
 elseif(cmd == "k")
 xCrab = x - dStep*cos(theta);
 yCrab = y - dStep*sin(theta);
-thetCrabs = theta;
+thetaCrabs = theta;
 
 % rotate right
 elseif(cmd == "i")
 xCrab = x;
 yCrab = y ;
-thetCrabs = theta + dTheta;
+thetaCrabs = theta + dTheta;
 
 % rotate left
-elseif(cmd == "i")
+elseif(cmd == ",")
 xCrab = x;
 yCrab = y ;
-thetCrabs = theta - dTheta;
+thetaCrabs = theta - dTheta;
 
 else
 xCrab = x;
 yCrab = y ;
-thetCrabs = theta;
+thetaCrabs = theta;
 
 endif
 

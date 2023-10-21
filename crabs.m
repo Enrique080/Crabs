@@ -59,7 +59,7 @@ elseif (cmd == "i" || cmd == "j" || cmd == "k" || cmd == "l" || cmd ==",") % res
 [xCrab,yCrab,thetaCrabs] = moveCrab(cmd,xCrab,yCrab,thetaCrab,sizeCrab, mapHeight, mapWidth);
 
 %draw new captain and crab
-crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab)
+crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab);
 
 endif
 

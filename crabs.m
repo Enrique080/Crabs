@@ -1,4 +1,4 @@
-function crabs ()
+function crabs(level)
 
 
 
@@ -31,6 +31,7 @@ sizeJelly = 25;
 % Put your call to drawCapt() here ..... You must give drawCapt its
 captGraphics = drawCapt(xCapt , yCapt , thetaCapt , sizeCapt);
 crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab);
+jellyGraphics = drawJelly(xJelly,yJelly,thetaJelly,sizeJelly);
 % input and output arguments.
 %*******************************************************
 while(1)

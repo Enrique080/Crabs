@@ -46,14 +46,13 @@ endfor
   [xJelly,yJelly,thetaJelly] = moveJelly(level, xJelly, yJelly,thetaJelly, sizeJelly, mapHeight, mapWidth);
 
   % draw jellyfish
-jellyGraphics = drawJelly(xJelly,yJelly,thetaJelly,sizeJelly);
+  jellyGraphics = drawJelly(xJelly,yJelly,thetaJelly,sizeJelly);
 
 % read the keyboard
-
-cmd = kbhit(1);
-if (cmd == 'Q')
-break;
-endif
+  cmd = kbhit(1);
+  if (cmd == 'Q')
+  break;
+  endif
 
 %initial command
 %cmd = "null";
@@ -61,21 +60,20 @@ endif
 %while(cmd != "Q")
 
 %cmd = kbhit();
-
  if((cmd == "w") || (cmd == "a") || (cmd == "d"))
 
- %erase old captGraphics
+%erase old captGraphics
  for(i=1: length(captGraphics))
  set( captGraphics(i), 'Visible', 'off');
-  endfor
+ endfor
 
- %move captain
-[xCapt, yCapt,thetaCapt] = moveCaptain(cmd, xCapt, yCapt, thetaCapt, mapWidth, mapHeight);
+%move captain
+  [xCapt, yCapt,thetaCapt] = moveCaptain(cmd, xCapt, yCapt, thetaCapt, mapWidth, mapHeight);
 
 %draw new captain
-captGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt);
+  captGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt);
 
-elseif (cmd == "i" || cmd == "j" || cmd == "k" || cmd == "l" || cmd ==",") % respond crab moved
+  elseif (cmd == "i" || cmd == "j" || cmd == "k" || cmd == "l" || cmd ==",") % respond crab moved
 
 %erase old crab
   for i=1:length(crabGraphics)
@@ -83,23 +81,23 @@ elseif (cmd == "i" || cmd == "j" || cmd == "k" || cmd == "l" || cmd ==",") % res
   endfor
 
 %move crab
-[xCrab,yCrab,thetaCrab] = moveCrab(cmd,xCrab,yCrab,thetaCrab,sizeCrab, mapHeight, mapWidth);
+  [xCrab,yCrab,thetaCrab] = moveCrab(cmd,xCrab,yCrab,thetaCrab,sizeCrab, mapHeight, mapWidth);
 
 %draw new captain and crab
-crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab);
+  crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab);
 
-endif
+  endif
 
-if((cmd == "f") || (cmd == "g"))
+  if((cmd == "f") || (cmd == "g"))
 
 %erase old captGraphics
    for(i=1: length(captGraphics))
    set( captGraphics(i), 'Visible', 'off');
-  endfor
+   endfor
 
-[sizeCapt] = getHulk(cmd, sizeCapt);
+  [sizeCapt] = getHulk(cmd, sizeCapt);
 
-captGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt);
+  captGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt);
 
 endif
 

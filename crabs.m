@@ -1,7 +1,8 @@
 function crabs(level)
 
-
-
+%set the number of jelly fish
+numJelly = level;
+numCrabs = 1;
 % Crabs is a kids computer game where a fisherman, called the captain,
 % hunts for a very clever and powerful crab.
 % Draw the game map and initialize map dimensions.
@@ -12,28 +13,38 @@ xCapt = 500;
 yCapt = 1000;
 thetaCapt = -pi/2;
 sizeCapt = 50;
-healthCapt = 100;
+healthCapt = 100
 crabsCaught = 0;
 
 %initialize crab location, heading and size
-xCrab = 1000;
-yCrab = 1200;
-thetaCrab = -pi/2;
+xCrab =rand(1,numCrabs)*mapWidth;
+yCrab = rand*mapHeight/4 + 3*mapHeight/4;
+thetaCrab = ones(1,numCrabs)*(-pi/2);
 sizeCrab = 50;
 
 %initialize jellyfish
-xJelly = rand*mapWidth;
-yJelly = 0;
-thetaJelly = -pi/2;
+xJelly = rand(1,numJelly)*mapWidth;
+yJelly = rand(1,numJelly)*mapHeight;
+thetaJelly = ones(1,numJelly)*(-pi/2);
 sizeJelly = 25;
 jellySting = 2;
+
 
 % Draw the captain and initialize graphics handles
 %*********************************************************
 % Put your call to drawCapt() here ..... You must give drawCapt its
 [captGraphics, xPoint, yPoint] = drawCapt(xCapt , yCapt , thetaCapt , sizeCapt);
-crabGraphics = drawCrab(xCrab,yCrab,thetaCrab,sizeCrab);
-jellyGraphics = drawJelly(xJelly,yJelly,thetaJelly,sizeJelly);
+
+%draw crabs
+For c = 1: numCrabs
+crabGraphics(:,c) = drawCrab(xCrab(c),yCrab(c),thetaCrab(c),sizeCrab);
+endfor
+
+%draw Jelly fish
+for k=1:numJelly
+jellyGraphics(:,k) = drawJelly(xJelly(k),yJelly(k),thetaJelly(k),sizeJelly);
+endfor
+
 % input and output arguments.
 %*******************************************************
 
@@ -53,18 +64,29 @@ healthStatus = text(healthLoc(1), healthLoc(2), strcat('Health = ',num2str(healt
 crabsCaughtStatus = text(crabsCaughtLoc(1), crabsCaughtLoc(2),
 strcat('Crabs Caught = ', num2str(crabsCaught)), 'FontSize', 12, 'Color', 'red');
 
-% Put your jellyfish stuff here ...
+% draw the Jellyfish
 
+for k=1:numJelly
+  
 % erase old jellyfish
-    for i=1:length(jellyGraphics)
-     delete(jellyGraphics(i));
+    for i=1:length(jellyGraphics(:,k))
+     delete(jellyGraphics(i,k));
 endfor
 
   % move jellyfish
-  [xJelly,yJelly,thetaJelly] = moveJelly(level, xJelly, yJelly,thetaJelly, sizeJelly, mapHeight, mapWidth);
+  [xJelly(k),yJelly(k),thetaJelly(k)] = moveJelly(level, xJelly(k), yJelly(k),thetaJelly(k), sizeJelly, mapHeight, mapWidth);
 
   % draw jellyfish
-  jellyGraphics = drawJelly(xJelly,yJelly,thetaJelly,sizeJelly);
+  jellyGraphics(:,k) = drawJelly(xJelly(k),yJelly(k),thetaJelly(k),sizeJelly);
+  
+ 
+ %jelly sting
+
+for k=1:numJelly
+   if ( getDist(xJelly(k),yJelly(k),xCapt,yCapt) < 3*sizeCapt )
+  healthCapt = healthCapt - jellySting;
+   endif
+endfor
 
 % read the keyboard
   cmd = kbhit(1);
@@ -119,21 +141,17 @@ endfor
 
 endif
 
-%jelly sting
- if ( getDist(xJelly,yJelly,xCapt,yCapt) < 3*sizeCapt )
-  healthCapt = healthCapt - jellySting;
-endif
-
-d= getDist(xPoint,yPoint,xCrab,yCrab)
-  if( getDist(xPoint,yPoint,xCrab,yCrab) < 2*sizeCapt ) %crab is caught
+%crab is caught
+  d= getDist(xPoint,yPoint,xCrab,yCrab)
+if( getDist(xPoint,yPoint,xCrab,yCrab) < 2*sizeCapt ) 
   
 %keep track of how many crabs are caught
   crabsCaught = crabsCaught +1;
   
 %erase old crab
   for i=1:length(crabGraphics)
-  delete(crabGraphics(i));
-endfor
+    delete(crabGraphics(i));
+  endfor
 
 %create a new crab. initialize new crab location, heading and size
   xCrab = rand*mapWidth;

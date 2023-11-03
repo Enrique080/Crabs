@@ -22,7 +22,7 @@ if( cmd == "w")
     endif
 
     thetaCapt = theta;
-
+    
 elseif(cmd == "a")
       xCapt= x;
       yCapt= y;

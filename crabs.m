@@ -19,8 +19,10 @@ sizeCapt = 50;
 healthCapt = 100;
 crabsCaught = 0;
 
+
+
 %initialize crab location, heading and size
-xCrab =rand(1,numCrabs)*mapWidth;
+xCrab = rand(1,numCrabs)*mapWidth;
 yCrab = 3*mapHeight/4 + rand(1,numCrabs)*mapHeight/4;
 thetaCrab = ones(1,numCrabs)*(-pi/2);
 sizeCrab = 50;
@@ -40,6 +42,18 @@ jellySting = 2;
 % Put your call to drawCapt() here ..... You must give drawCapt its
 [captGraphics, xPoint, yPoint] = drawCapt(xCapt , yCapt , thetaCapt , sizeCapt);
 
+%initialize and draw bubbles
+
+%numBubbles = 6;
+%maxBubbleSize = 30;
+%xBubble = xMouth*ones(1,numBubbles);
+%yBubble = yMouth*rand(1,numBubbles);
+%sizeBubble = maxBubbleSize*rand(1,numBubbles);
+
+%for b=1:numBubbles
+ %   bubbleGraphics(b)=drawBubble(xBubble(b),yBubble(b),sizeBubble(b));
+%endfor
+
 %draw crabs
 for c = 1:numCrabs
     crabGraphics(:,c) = drawCrab(xCrab(c),yCrab(c),thetaCrab(c),sizeCrab);
@@ -58,6 +72,8 @@ endfor
   crabsCaughtLoc = [100,175];
   healthStatus = text(healthLoc(1), healthLoc(2), strcat('Health = ',num2str(healthCapt)), 'FontSize', 12, 'Color', 'red');
   crabsCaughtStatus = text(crabsCaughtLoc(1), crabsCaughtLoc(2), strcat('Crabs Caught = ',num2str(crabsCaught)), 'FontSize', 12, 'Color', 'red');
+
+  
 
 while(1)
 
@@ -122,10 +138,49 @@ while(1)
              endfor
 
             [sizeCapt] = getHulk(cmd, sizeCapt);
+            %enhance = getHulk (cmd, capt)
 
             captGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt);
+       endif
 
-      endif
+            % Simulation parameters
+    
+        % Check if the pressed key is 'r'
+        if cmd == 'r'
+          movement = shoot(t);
+            for i = 1:length(t)
+                % Update positions based on motion equations
+                position_shooter = initial_position_shooter + initial_velocity_shooter * t(i);
+
+                % Plot the objects
+                plot(position_shooter(1), position_shooter(2), '^', 'MarkerSize', 10, 'MarkerFaceColor', 'k');
+                hold on;
+                xlabel('X-axis');
+                ylabel('Y-axis');
+                title('Object Shooting Another Object');
+                axis equal;
+                xlim([-1, 6]);
+                ylim([-1, 6]);
+                hold off;
+
+                % Pause to create animation effect
+                pause(0.1);
+            endfor
+            
+            
+        endif
+        
+    
+ %for b=1:numBubbles
+   
+    %delete old bubbles
+    %delete(bubbleGraphics(b));
+    
+    %move bubble
+    %[xBubble(b),yBubble(b)] = moveBubble(xBubble(b), yBubble(b), xMouth, yMouth, maxBubbleSize);
+    
+    %draw bubble
+    %bubbleGraphics(b) = drawBubble(xBubble(b),yBubble(b),sizeBubble(b));
 
     %crab is caught
       %d= getDist(xPoint,yPoint,xCrab,yCrab)

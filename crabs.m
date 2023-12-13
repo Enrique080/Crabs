@@ -4,7 +4,7 @@ playGame = 1;
 while(playGame)
     
  %draw start screen
-    level = drawStartScreen("beach.png");
+    level = drawStartScreen("CrabHome.png");
     
     while(1)
     

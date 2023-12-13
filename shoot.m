@@ -1,12 +1,15 @@
 
-function shoot(cmd,captSize)
+function shoot(cmd, xPosition_shooter, yPosition_shooter, theta)
 
     % Simulation parameters
     total_time = 5;  % total simulation time
-    dt = 0.75;       % time step
+    dt = 0.10;       % time step
+    dStep = 0.05;
+   
 
     % Shooting object parameters
-    initial_position_shooter = captPt13=[ 3*captSize; -2*captSize; 1] || captPt14=[ -captSize; -2*captSize; 1]; 
+    initial_position_shooter = [xPosition_shooter, yPosition_shooter];
+    %captPt13=[ 3*captSize; -2*captSize; 1] || captPt14=[ -captSize; -2*captSize; 1]; 
     initial_velocity_shooter = [0, 1];   % initial velocity
 
 
@@ -26,11 +29,13 @@ function shoot(cmd,captSize)
         % Check if the pressed key is 'r'
         if cmd == 'r'
             for i = 1:length(t)
-                % Update positions based on motion equations
-                position_shooter = initial_position_shooter + initial_velocity_shooter * t(i);
+                
+                %position_shooter = initial_position_shooter + initial_velocity_shooter * t(i);
+                xPosition_shooter = xPosition_shooter + dStep*cos(theta) ;
+                yPosition_shooter = yPosition_shooter + dStep*sin(theta) ;
 
                 % Plot the objects
-                plot(position_shooter(1), position_shooter(2), '^', 'MarkerSize', 10, 'MarkerFaceColor', 'k');
+                plot(xPosition_shooter, yPosition_shooter, '^', 'MarkerSize', 10, 'MarkerFaceColor', 'k');
                 hold on;
                 xlabel('X-axis');
                 ylabel('Y-axis');
@@ -42,15 +47,15 @@ function shoot(cmd,captSize)
 
                 % Pause to create animation effect
                 pause(0.1);
-            end
-        %elseif cmd == 'q'
-            %disp('Simulation aborted. Key pressed is ''q''.');
-            %break;  % Exit the while loop
+            endfor
+        elseif cmd == 'q'
+            disp('Simulation aborted. Key pressed is ''q''.');
+            break;  % Exit the while loop
         else
             disp('Unknown key pressed. Press ''r'' ');
-        end
-    end
-
-end
+        endif
+    endwhile
 
 endfunction
+
+

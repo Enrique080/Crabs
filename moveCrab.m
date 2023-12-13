@@ -1,4 +1,4 @@
-function [xCrab,yCrab,thetaCrabs] = moveCrab(cmd,x,y,theta,height,width,size)
+function [xCrab,yCrab,thetaCrab] = moveCrab(cmd,x,y,theta,height,width,size)
 
 dStep = 20;
 dTheta = pi/6;

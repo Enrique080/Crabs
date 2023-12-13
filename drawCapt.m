@@ -1,4 +1,4 @@
-function [captainGraphics, xPoint, yPoint, xMouth, yMouth] = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt)
+function [captainGraphics, xPoint, yPoint] = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt)
 % In the future, this function will draw the captain at the given
 % position (xCapt , yCapt) , with heading thetaCapt.
 % For now, it draws the captain at the (0, 0) with 0 heading.
@@ -27,9 +27,6 @@ capt = T*captRotated;
   yPoint = pt13(2);
 
   
- pt9=capt( : , 9);
- xMouth = pt9(1);
- yMouth = pt9(2);
   
 % Extract the captain points from the captain matrix capt.
 pt1=capt( : , 1);

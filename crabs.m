@@ -1,5 +1,14 @@
 function crabs(level)
 
+playGame = 1;
+while(playGame)
+    
+ %draw start screen
+    level = drawStartScreen("beach.png");
+    
+    while(1)
+    
+
 %set the number of jelly fish
 numJelly = level;
 
@@ -42,17 +51,7 @@ jellySting = 2;
 % Put your call to drawCapt() here ..... You must give drawCapt its
 [captGraphics, xPoint, yPoint] = drawCapt(xCapt , yCapt , thetaCapt , sizeCapt);
 
-%initialize and draw bubbles
 
-%numBubbles = 6;
-%maxBubbleSize = 30;
-%xBubble = xMouth*ones(1,numBubbles);
-%yBubble = yMouth*rand(1,numBubbles);
-%sizeBubble = maxBubbleSize*rand(1,numBubbles);
-
-%for b=1:numBubbles
- %   bubbleGraphics(b)=drawBubble(xBubble(b),yBubble(b),sizeBubble(b));
-%endfor
 
 %draw crabs
 for c = 1:numCrabs
@@ -147,8 +146,8 @@ while(1)
     
         % Check if the pressed key is 'r'
         if cmd == 'r'
-          movement = shoot(t);
-            for i = 1:length(t)
+          movement = shoot();
+            for i = 1:length()
                 % Update positions based on motion equations
                 position_shooter = initial_position_shooter + initial_velocity_shooter * t(i);
 
@@ -171,44 +170,49 @@ while(1)
         endif
         
     
- %for b=1:numBubbles
-   
-    %delete old bubbles
-    %delete(bubbleGraphics(b));
-    
-    %move bubble
-    %[xBubble(b),yBubble(b)] = moveBubble(xBubble(b), yBubble(b), xMouth, yMouth, maxBubbleSize);
-    
-    %draw bubble
-    %bubbleGraphics(b) = drawBubble(xBubble(b),yBubble(b),sizeBubble(b));
 
     %crab is caught
-      %d= getDist(xPoint,yPoint,xCrab,yCrab)
       for c= 1: numCrabs
+        
           if( !isCrabCaught(c) && getDist(xPoint,yPoint,xCrab(c),yCrab(c)) < 2*sizeCapt ) 
             
               %keep track of how many crabs are caught
                 crabsCaught = crabsCaught + 1;
-                isCrabCaught(c) = 1
+                isCrabCaught(c) = 1;
                 
               %erase old crab
                   for i=1:length(crabGraphics(:,c))
                     delete(crabGraphics(i,c));
                   endfor
-            
+             
+              % compute the crab’s angle to the net with getTheta
+              %theta = getTheta (xPoint + xCrab(k) ,yPoint + yCrab(k));
+              
+              
+              %call moveCrab
+             % [xCrab(k),yCrab(k),thetaCrabs(k)] = moveCrab(cmd(k),x(k),y(k),theta(k),height,width,size);
+              
+              %drawCrab
+              %crabGraphics(:,c) = drawCrab(xCrab(c),yCrab(c),thetaCrab(c),sizeCrab);
+           
            endif
 
       endfor
+
+    endwhile
 
     fflush(stdout);
     pause(.01)
 
 endwhile
 
+%draw end screen
+playGame = drawEndScreen("beach.png",crabsCaught,numCrabs);
+endwhile
 
  close all
  clear
-
+ 
 endfunction
 
 
